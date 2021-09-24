@@ -43,6 +43,12 @@ select * from invoice where total between 15 and 20;
 
 select * from customer where hire_date between '2003-06-01 00:00:00' and '2004-03-01 00:00:00';
 
+--2.7
+
+delete from invoice_line where  invoice_id in (select invoice_id from invoice where customer_id = (select customer_id from customer where first_name='Robert' and last_name = 'Walter' ));
+
+delete from invoice where customer_id = (select customer_id from customer where first_name='Robert' and last_name = 'Walter' );
+
 delete from customer where first_name='Robert' and last_name = 'Walter';
 
 --7.1
