@@ -1,0 +1,140 @@
+--2.1
+select *
+from employee;
+
+select * from employee 
+where last_name ='King';
+
+select* from employee 
+where first_name ='Andrew'
+and reports_to = NULL;
+
+--2.2
+select *
+from album
+order by title desc ;
+
+
+select *
+from customer 
+order by city desc;
+
+--2.3
+select*
+from genre;
+insert into genre (genre_id,name)
+values(200,'yum');
+
+select * from employee  ;
+insert into employee (employee_id,last_name,first_name,title,reports_to,birth_date,hire_date,address,city,state,country,postal_code,phone,fax,email)
+values(2000,'cake','mix','cashier',1,'1958-12-09', '2004-01-05','123 aspen','Aberata','NY','Canada','10111','+1(202)265-2258','+1(202)265-2258',null);
+
+select * from customer ;
+insert  into customer (first_name,last_name,company,address,city,state,country,postal_code,phone,fax,email,support_rep_id)
+values();
+
+--2.4
+select *
+from customer 
+where first_name  = 'Aaron';
+and  last_name  = 'Mitchel';
+
+update customer 
+set first_name  = 'Robert'
+where customer_id =32;
+update customer 
+set last_name  = 'Walter'
+where customer_id =32;
+
+select* from artist 
+where name ='Creedence Clearwater Revival';
+
+update artist 
+set "name" ='ccr'
+where artist_id = 76;
+
+
+--2.5
+select*
+from invoice 
+where billing_address   like '%t';
+--2.6
+select *from invoice i ;
+
+
+
+select * from invoice 
+where total between 15 and 20;
+
+      
+
+
+select * from employee 
+where hire_date between '2000-08-14'  and '2003-05-03' ;
+
+
+
+--2.7
+select * from customer c 
+where first_name ='Robert';
+delete from customer 
+where first_name = 'Robert' and last_name ='Walter';
+
+drop table invoice ;
+select * from invoice ;
+-- had foreign key
+-- drop table invoice 
+-- remove its constraints?
+alter table invoice
+--drop column customer_id;
+-- may not be efficient since i dropped the whole column
+==drop table customer ;
+select *
+from invoice i ;
+alter table invoice
+drop constraint customer_id;
+
+
+--7.1
+select *
+from customer;
+select * from invoice ;
+
+select first_name,last_name,invoice_id
+from customer c   inner join invoice i
+on c.customer_id = i.customer_id ;
+
+
+---7.2
+
+select first_name,last_name,invoice_id,total
+from customer c full outer join invoice i 
+on c.customer_id =i.customer_id ;
+
+--7.3
+select * from artist a ;
+select * from album a ;
+
+select name,title
+from artist a right join album a2 
+on a.artist_id =a2.artist_id ;
+
+
+
+--7.4
+select * from album a cross join artist a2 
+--on a.album_id = a2.artist_id 
+order by name asc ;
+
+
+--7.5
+select reports_to 
+from employee e3 ;
+select *
+from employee e  join employee e2
+on e.reports_to = e2.reports_to ; 
+
+select *
+from employee e ,employee e2
+where e.reports_to = e2.reports_to ;
+
