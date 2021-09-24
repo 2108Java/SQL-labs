@@ -1,0 +1,97 @@
+Name: Jihad Abdul-Latif
+
+--2.1 SELECT
+
+--Task – Select all records from the Employee table.
+select * from employee e ;
+
+--Task – Select all records from the Employee table where last name is King.
+select  * from employee e where e.last_name = 'King';
+
+--Task – Select all records from the Employee table where first name is Andrew and REPORTSTO is NULL.
+
+
+--2.2 ORDER BY
+
+--Task – Select all albums in Album table and sort result set in descending order by title.
+select * from album a order by a.title desc ;
+
+--Task – Select first name from Customer and sort result set in ascending order by city
+select first_name from customer c order by c.city asc ;
+
+
+--2.3 INSERT INTO
+
+--Task – Insert two new records into Genre table
+insert into genre (name) values
+('religion'),
+('video game');
+--Task – Insert two new records into Employee table
+employee_id, last_name, first_name, title, reports_to, birth_date, hire_date, address, city, state, country, postal_code, phone, fax, email 
+
+insert into employee  (last_name, first_name, title, reports_to, birth_date, hire_date, address, city, state, country, postal_code, phone, fax, email) values
+('man', 'good','IT Staff' ,6 ,'1970-05-29 00:00:00' ,'1970-05-29 00:00:00' ,'123 ave','some place','md','usa','2323','12354467','6784330912', 'hs@ddjdk.ccom' ),
+('people', 'good','IT Staff' ,6 ,'1970-05-29 00:00:00' ,'1970-05-29 00:00:00' ,'123 ave','some place','md','usa','2323','12354467','6784330912', 'hs@ddjdk.ccom' );
+
+
+
+--Task – Insert two new records into Customer table
+
+--2.4 UPDATE
+--Task – Update Aaron Mitchell in Customer table to Robert Walter
+update customer set first_name = 'Robert', last_name  = 'Walter' where first_name = 'Aaron' and last_name = 'Mitchell';
+--Task – Update name of artist in the Artist table “Creedence Clearwater Revival” to “CCR”
+update artist set name = 'CCR' where name = 'Creedence Clearwater Revival';
+
+--2.5 LIKE
+--Task – Select all invoices with a billing address like “T%”
+select * from invoice i where billing_address like 'T%';
+
+
+--2.6 BETWEEN
+--Task – Select all invoices that have a total between 15 and 50
+select * from invoice i where i.total between 15 and 50;
+--Task – Select all employees hired between 1st of June 2003 and 1st of March 2004
+select  * from  employee e where e.hire_date between '2003-06-1' and '2004-03-1';
+
+
+--2.7 DE LETE
+--Task – Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).
+delete from invoice_line where  invoice_id in (select invoice_id from invoice where customer_id = 
+(select customer_id from customer where first_name='Robert' and last_name = 'Walter' ));
+
+delete from invoice where customer_id in (select customer_id from customer where first_name='Robert' and last_name = 'Walter' );
+
+delete from customer where first_name='Robert' and last_name = 'Walter' ;
+
+
+
+--7.0 JOINS
+--In this section you will be working with combining various tables through the use of joins. You will work with outer, inner, right, left, cross, and self joins.
+
+--7.1 INNER
+--Task – Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
+select c.first_name , c.last_name, i.invoice_id from customer c  inner join invoice i  on c.customer_id = i.customer_id ;
+
+
+
+--7.2 OUTER
+--Task – Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
+select c.customer_id, c.first_name , c.last_name, i.invoice_id, i.total from customer c  full outer join invoice i  on c.customer_id = i.customer_id ;
+
+
+
+--7.3 RIGHT
+--Task – Create a right join that joins album and artist specifying artist name and title.
+select a2.name, a.title from album a  right join artist a2  on a.artist_id = a2.artist_id ;
+
+
+--7.4 CROSS
+--Task – Create a cross join that joins album and artist and sorts by artist name in ascending order.
+select * from album a cross join artist a2 order by a2.name asc ;
+
+
+--7.5 SELF
+--Task – Perform a self-join on the employee table, joining on the reportsto column.
+select * from employee e inner join employee e2 on e.employee_id  = e2.employee_id ;
+
