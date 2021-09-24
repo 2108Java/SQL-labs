@@ -1,0 +1,66 @@
+--2.1
+
+select * from employee;
+
+select * from employee where last_name = 'King';
+
+select * from employee where first_name = 'Andrew' and reports_to = NULL;
+
+--2.2
+
+--select * from album;
+select * from album a order by title desc;
+
+select first_name from customer c order by city asc; 
+
+--2.3
+--
+--select * from genre g ;
+select * from customer;
+
+insert into genre (name) values ('Conway Pop'),('fake genre');
+
+insert into employee (last_name, first_name ) values ('Bobby','McBobby'),('Ben','McBobby');
+
+insert into customer (last_name, first_name, email ) values ('Bobby','McBobby', 'bMcBobby@hotmail.com'),('Ben','McBobby','bMcBobby@gmail.com');
+
+--2.4
+
+--select * from customer where first_name = 'Aaron';
+--select * from artist where name = 'CCR';
+
+update customer set first_name = 'Robert', last_name = 'Walter' where first_name = 'Aaron' and last_name = 'Mitchell';
+
+update artist set name = 'CCR' where name = 'Creedence Clearwater Revival';
+
+--2.5
+
+select * from invoice i where billing_address like 'T%';
+
+--2.6
+
+select * from invoice where total between 15 and 20;
+
+select * from customer where hire_date between '2003-06-01 00:00:00' and '2004-03-01 00:00:00';
+
+delete from customer where first_name='Robert' and last_name = 'Walter';
+
+--7.1
+
+select c.first_name,c.last_name, i.invoice_id from customer c inner join invoice i on c.customer_id = i.customer_id ;
+
+--7.2
+
+select c.customer_id, c.first_name,c.last_name, i.invoice_id, i.total from customer c full outer join invoice i on c.customer_id = i.customer_id;
+
+--7.3
+
+select a.name, b.title from album b right outer join artist a on a.artist_id = b.artist_id ;
+
+--7.4
+
+select * from album a cross join artist a2 order by a2.name asc;
+
+--7.5
+
+select * from employee a inner join employee b on a.reports_to = b.reports_to ;
