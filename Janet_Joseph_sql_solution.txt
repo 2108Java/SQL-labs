@@ -1,0 +1,83 @@
+--2.1
+--2.1.1
+select * from employee;
+--2.1.2
+select * from employee where last_name = 'King';
+--2.1.3
+select * from employee where first_name = 'Andrew' and reports_to = NULL;
+
+--2.2
+--2.2.1
+select * from album order by title desc;
+--2.2.2
+select first_name from customer order by city;
+--2.2.3
+
+--2.3
+--2.3.1
+insert into genre (name) values ('Psychology');
+insert into genre (name) values ('Thriller');
+--2.3.2
+insert into employee (last_name, first_name, title, reports_to, birth_date, hire_date, address,
+city, state, country, postal_code, phone, fax, email) 
+values ('Smith', 'John', 'IT Staff', 6, '1965-02-07 00:00:00', '2005-03-04 00:00:00', '120 7 NT NW', 'Lethbridge', 
+'AB', 'Canada', 'T1H 5Y8', '+1 (403) 476-3288', '+1 (403) 476-8672', 'john@chinookcorp.com');
+insert into employee (last_name, first_name, title, reports_to, birth_date, hire_date, address,
+city, state, country, postal_code, phone, fax, email) 
+values ('Thomas', 'Ben', 'IT Staff', 6, '1966-04-05 00:00:00', '2004-03-07 00:00:00', '470 7 ST NW', 'Lethbridge', 'AB', 
+'Canada', 'T1H 7Y8', '+1 (403) 477-3513', '+1 (403) 477-9009', 'ben@chinookcorp.com');
+--2.3.3
+insert into customer (first_name, last_name, company, address, city, state, country,
+postal_code, phone, email, support_rep_id) 
+values ('Tim', 'Hanks', 'Microsoft Corporation', '400 N 5th Street', 'Reno', 
+'NV', 'USA', '89400', '+1 (775) 226-3005', 'tom.hanks@gmail.com', 4);
+insert into customer (first_name, last_name, company, address, city, state, country,
+postal_code, phone, email, support_rep_id) 
+values ('Jim', 'Baker', 'Microsoft Corporation', '47 Infinite Loop', 'Cupertino', 'CA', 
+'USA', '97422', '+1 (408) 725-3224', 'tom.hanks@gmail.com', 5);
+
+--2.4
+--2.4.1
+update customer
+set first_name = 'Aaron', last_name = 'Mitchell'
+where first_name = 'Robert' and last_name = 'Walter';
+--2.4.2
+update artist
+set name = 'Creedence Clearwater Revival'
+where name = 'CCR';
+
+--2.5
+select * from invoice where billing_address like 'T%';
+
+--2.6
+--2.6.1
+select * from invoice where total between 15 and 50;
+--2.6.2
+select * from employee where hire_date between '2003-06-01 00:00:00' and '2004-04-01 00:00:00';
+
+--2.7
+delete from customer where first_name = 'Robert' and last_name = 'Walter';
+
+--7.1
+select c.first_name, c.last_name, i.invoice_id 
+from customer as c inner join invoice as i 
+on c.customer_id = i.customer_id; 
+
+--7.2
+select c.customer_id, c.first_name, c.last_name, i.invoice_id, i.total 
+from customer as c full outer join invoice as i 
+on c.customer_id = i.customer_id; 
+
+--7.3
+select a.name, al.title 
+from artist as a right join album as al 
+on al.artist_id = a.artist_id;
+
+--7.4
+select a.artist_id, a.name, al.album_id, al.title
+from artist as a cross join album as al
+order by a.name;
+
+--7.5
+select * from employee e inner join employee r 
+on r.employee_id = e.reports_to;
