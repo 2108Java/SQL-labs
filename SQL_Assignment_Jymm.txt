@@ -1,0 +1,67 @@
+2.1 
+a) SELECT * FROM employee;
+b) SELECT * FROM employee WHERE last_name = 'King';
+c) SELECT * FROM employee WHERE first_name = 'Andrew' and reports_to IS NULL;
+
+2.2
+a) SELECT * FROM album ORDER BY title DESC;
+b) SELECT first_name FROM customer ORDER BY city ASC;
+
+2.3 
+a.1) INSERT INTO genre (name) VALUES ('Orchestra');
+a.2) INSERT INTO genre (name) VALUES ('Traditional');
+b.1) INSERT INTO
+	employee (last_name, first_name, title, reports_to, birth_date, hire_date, address, city, state, country, postal_code, phone, fax, email)
+		VALUES
+			('Enriquez', 'Jymm', 'Training Employee', 1, '02/12/1998', '08/30/2021', '31A First Street', 'Corpus Christi', 'TX', 'USA', '78415', '+1 (361) 580-5321', '+1 (361) 580-5322', 'jymm@chinookcorp.com');
+b.2) INSERT INTO 
+	employee (last_name, first_name, title, reports_to, birth_date, hire_date, address, city, state, country, postal_code, phone, fax, email)
+		VALUES 
+			('Garcia', 'John', 'Senior IT ', 1, '12/16/1977', '06/21/2000', '500 Next Street', 'Corpus Christi', 'TX', 'USA', '78412', '+1 (361) 783-1531', '+1 (361) 783-1520', 'john.garcia@chinookcorp.com');
+c.1) INSERT INTO
+	customer (first_name, last_name, company, address, city, state, country, postal_code, phone, fax, email, support_rep_id)
+		VALUES 
+			('John', 'Doe', 'Googleplex', '1600 Amphitheatre Pkwy', 'Mountain View', 'CA', 'USA', '94043', '+1 (650) 253-0000', '+1 (650) 253-0000', 'john.doe@gmail.com', 3);
+c.2) INSERT INTO
+	customer (first_name, last_name, company, address, city, state, country, postal_code, phone, fax, email, support_rep_id)
+		VALUES 
+			('Jane', 'Doe', 'LinkedIn Global Headquarters', '1000 W Maude Ave', 'Sunnyvale', 'CA', 'USA', '94085', '+1 (650) 687-3600', '+1 (650) 687-3600', 'jane.doe@linkedin.com', 3);
+
+2.4
+a) UPDATE customer SET first_name = 'Robert', last_name = 'Walter' WHERE first_name = 'Aaron' AND last_name = 'Mitchell';
+b) UPDATE artist SET name = 'CCR' WHERE name = 'Creedence Clearwater Revival';
+
+2.5
+a) SELECT * FROM invoice WHERE billing_address LIKE 'T%';
+
+2.6
+a) SELECT * FROM invoice WHERE total BETWEEN 15 AND 50;
+(answer can be achieved as well by using:
+ SELECT * FROM invoice WHERE total > 15 AND total < 50;)
+b) SELECT * FROM employee WHERE hire_date BETWEEN '06/01/2003' AND '03/01/2004';
+(answer can be achieved as well by using:
+ SELECT * FROM employee WHERE hire_date > '06/01/2003' AND hire_date < '03/01/2004';)
+
+2.7
+a) 
+DELETE FROM invoice_line WHERE invoice_id = 50;
+DELETE FROM invoice_line WHERE invoice_id = 61;
+DELETE FROM invoice_line WHERE invoice_id = 116;
+DELETE FROM invoice_line WHERE invoice_id = 245;
+DELETE FROM invoice_line WHERE invoice_id = 268;
+DELETE FROM invoice_line WHERE invoice_id = 290;
+DELETE FROM invoice_line WHERE invoice_id = 342;
+DELETE FROM invoice WHERE customer_id = 32;
+DELETE FROM customer WHERE first_name = 'Robert' AND last_name = 'Walter';
+
+7.0
+7.1) SELECT c.first_name,c.last_name,i.invoice_id FROM customer c INNER JOIN invoice i ON c.customer_id = i.invoice_id ;
+
+7.2) SELECT c.customer_id, c.first_name, c.last_name, i.invoice_id, i.total FROM customer c FULL OUTER JOIN invoice i ON c.customer_id = i.invoice_id;
+
+7.3) SELECT a.name, a2.title FROM artist a RIGHT JOIN album a2 ON a.artist_id = a2.artist_id;
+
+7.4) SELECT * FROM album a CROSS JOIN artist a2 ORDER BY a2.name ASC;
+
+7.5) SELECT E1.reports_to AS Reports_To_E1, E2.reports_to AS Reports_To_E2 
+FROM employee E1, employee E2;
