@@ -1,0 +1,125 @@
+-- 2.1 SELECT
+-- Task – Select all records from the Employee table.
+select * from employee;
+-- Task – Select all records from the Employee table where last name is King.
+select * from employee where last_name = 'King';
+-- Task – Select all records from the Employee table where first name is Andrew and REPORTSTO is NULL.
+select * from employee where first_name = 'Andrew' -- and reports_to = null;
+
+-- 2.2 ORDER BY
+
+-- Task – Select all albums in Album table and sort result set in descending order by title.
+select * from album order by title desc;
+
+-- Task – Select first name from Customer and sort result set in ascending order by city
+select first_name from customer order by city asc;
+
+-- 2.3 INSERT INTO
+
+-- Task – Insert two new records into Genre table
+insert into genre (genre_id, name) values (26, N'Rai');
+select * from genre;
+
+-- Task – Insert two new records into Employee table
+INSERT INTO employee (employee_id, last_name, first_name, title, birth_date, hire_date, address, city, state, country, postal_code, phone, fax, email) 
+VALUES (9, N'John1', N'Doe1', N'Developer', '1977/5/18', '2021/8/1', N'730 Green St', N'San Francisco', N'CA', N'USA', N'94103', N'+1 (415) 428-9482', N'+1 (415) 428-3457', N'jd1@gmail.com');
+
+INSERT INTO employee (employee_id, last_name, first_name, title, birth_date, hire_date, address, city, state, country, postal_code, phone, fax, email) 
+VALUES (10, N'John2', N'Doe2', N'Developer', '1978/5/18', '2021/8/2', N'731 Green St', N'San Francisco', N'CA', N'USA', N'94103', N'+1 (415) 428-9483', N'+1 (415) 428-3458', N'jd2@gmail.com');
+
+-- Task – Insert two new records into Customer table
+
+INSERT INTO customer (customer_id, first_name, last_name, company, address, city, state, country, postal_code, phone, fax, email, support_rep_id) 
+VALUES (60, N'Luísa', N'Gonçalveste', N'Embraer - Empresa Brasileira de Aeronáutica S.A.', N'Av. Brigadeiro Faria Lima, 2171', N'São José dos Campos', N'SP', N'Brazil', N'12227-000', N'+55 (12) 3923-5558', N'+55 (12) 3923-5567', N'luisg@embraer.com.br', 3);
+
+INSERT INTO customer (customer_id, first_name, last_name, address, city, country, postal_code, phone, email, support_rep_id) 
+VALUES (61, N'Jack', N'Wampler', N'31 Fern ct', N'Marco Island', N'USA', N'341145', N'+01 0131 315 3300', N'jw@gmail.com', 4);
+
+
+-- 2.4 UPDATE
+-- Task – Update Aaron Mitchell in Customer table to Robert Walter
+
+update customer set first_name = 'Robert', last_name = 'Walter' where customer_id = 32;
+select * from customer order by customer_id asc;
+select * from customer where last_name = 'Mitchell'; -- record gone
+
+
+-- Task – Update name of artist in the Artist table “Creedence Clearwater Revival” to “CCR”
+-- 2.5 LIKE
+
+--select * from artist where artist_id = 76;
+update artist set name = 'CCR' where name = 'Creedence Clearwater Revival';
+--select * from artist where name = 'CCR';
+--select * from artist order by artist_id asc ;
+
+-- Task – Select all invoices with a billing address like “T%”
+
+select * from invoice where billing_address like 'T%';
+
+-- 2.6 BETWEEN
+-- Task – Select all invoices that have a total between 15 and 50
+
+select * from invoice where total between 15 and 20;
+
+-- Task – Select all employees hired between 1st of June 2003 and 1st of March 2004
+
+select * from employee;
+select * from employee where hire_date between '2003-03-01' and '2004-03-01';
+
+
+-- 2.7 DELETE
+-- Task – Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).
+
+
+--select * from customer where first_name = 'Robert';
+--select customer_id from customer where last_name = 'Walter';
+
+--delete from invoice where fk_invoice_customer_id = (select customer_id from customer where last_name = 'Walter');
+
+delete from customer where last_name = 'Walter';
+
+--alter table customer add foreign key(fk_invoice_customer_id) references invoice(customer_id) on delete cascade;
+
+
+
+--7.0 JOINS
+
+--In this section you will be working with combining various tables through the use of joins. You will work with outer, inner, right, left, cross, and self joins.
+
+
+--7.1 INNER
+
+--Task – Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
+
+select * from customer;
+
+select * from 
+
+--7.2 OUTER
+
+--Task – Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and --total.
+
+--7.3 RIGHT
+
+--Task – Create a right join that joins album and artist specifying artist name and title.
+
+--7.4 CROSS
+
+--Task – Create a cross join that joins album and artist and sorts by artist name in ascending order.
+
+--7.5 SELF
+
+--Task – Perform a self-join on the employee table, joining on the reportsto column.
+
+
+
+
+
+
+
+
+
+
+
+
+
