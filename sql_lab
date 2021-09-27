@@ -91,25 +91,42 @@ delete from customer where last_name = 'Walter';
 
 --Task – Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
 
-select * from customer;
+--select first_name, last_name, invoice_id from customer inner join invoice on customer.costomer_id = invoice.customer_id;
 
-select * from 
+--select first_name, last_name from customer;
 
+select first_name, last_name, invoice_id 
+from customer 
+inner join invoice 
+on invoice.customer_id = customer.customer_id;
 --7.2 OUTER
 
---Task – Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and --total.
+--Task – Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
+
+select customer.customer_id, first_name, last_name, invoice_id, total 
+from customer 
+full outer join invoice 
+on invoice.customer_id = customer.customer_id;
 
 --7.3 RIGHT
 
 --Task – Create a right join that joins album and artist specifying artist name and title.
 
+select name, title from artist right join album on artist.artist_id = album.artist_id;
+
 --7.4 CROSS
 
 --Task – Create a cross join that joins album and artist and sorts by artist name in ascending order.
 
+select * from album cross join artist order by artist.name asc;
+
 --7.5 SELF
 
 --Task – Perform a self-join on the employee table, joining on the reportsto column.
+
+select * from employee;
+select employee.first_name, employee.last_name from employee T1 inner join employee T2 on T1.reports_to = T2.employee_id ;
+
 
 
 
