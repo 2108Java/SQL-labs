@@ -1,1 +1,58 @@
-Hello Every body
+2.1 select 
+
+select *from Employee;
+select * from Employee Where last_name='King';
+select * from Employee Where first_name='Andrew' and  reports_to is NULL;
+
+2.2 order by
+select  *from Album;
+select  album_id from Album order by title DESC ;
+select first_name from Customer order by city asc;
+
+
+2.3 insert into
+select *from Genre;
+insert into Genre(genre_id, name) values (30,'classical');
+insert into Genre(genre_id, name) values (31,'jaz');
+
+select *from Employee;
+insert into Employee(employee_id, last_name, first_name, title,reports_to,birth_date,hire_date,address,city,state,country,postal_code,phone,fax,email) values
+(10,'John','John','Engineer',7,'1987-07-01 00:00:00', '2001-09-10 00:00:00', '111 N oak', 'Eavnston','IL','Canada','11kk','+1(847)234-8976','+1(847)222-8976','john@gmail.com'); 
+
+insert into Employee(employee_id, last_name, first_name, title,reports_to,birth_date,hire_date,address,city,state,country,postal_code,phone,fax,email) values
+(12,'Jack','Jack','Doctor',5,'1980-07-01 00:00:00', '2000-09-10 00:00:00', '111 N Broadway', 'Despl','IL','Canada','11kk','+1(847)234-8900','+1(847)222-8900','jack@gmail.com'); 
+
+select *from Customer;
+insert into Customer (customer_id, first_name,last_name,company,address,city,state,country,postal_code,phone,fax,email,support_rep_id)values(
+66,'Maria','Maria',null,'111 n oak','Chicago','Il','USA','H-111','+11122233',null,'maria@gmail.com',3);
+insert into Customer (customer_id, first_name,last_name,company,address,city,state,country,postal_code,phone,fax,email,support_rep_id)values(
+67,'Mary','Mary',null,'111 n broadway','Chicago','Il','USA','b-115','+11122773',null,'mary@gmail.com',3);
+
+2.4 update 
+update Customer set first_name ='Robert', last_name ='Mitchell' where first_name='Aaron' and last_name='Walter';
+select *from Artist;
+update Artist set name ='CCR' where name ='Creedence Clearwater Revival';
+
+2.5 like
+select *from invoice where billing_address like 'T%';
+
+2.6 between
+select *from invoice;
+select *from invoice where total between 15 and 50 ;
+
+select *from Employee where hire_date  between '06-01-2003 00:00:00' and '03-01-2004 00:00:00';
+
+
+
+delete from Customer where first_name='Robert' and last_name='Walter';
+
+
+select *from invoice ;
+
+
+select  first_name from Customer inner join invoice on Customer.customer_id = invoice.invoice_id ;
+
+select Customer.customer_id ,Customer.first_name, Customer.last_name from Customer full outer join invoice on Customer.customer_id =invoice.invoice_id ;
+select *from album right join artist on album.title = artist."name" ;
+
+select * from Employee where Employee.reports_to  ;
